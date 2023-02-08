@@ -71,4 +71,4 @@ function scripts.ckn:reload()
 end
 
 
-tempTimer(0, function() scripts.charConfig:init() end)
+tempTimer(0, function() scripts.ckn:init() end)
