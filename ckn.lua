@@ -29,7 +29,7 @@ end
 
 
 function scripts.ckn:init()
-    hecho("[#00ff00CKN#r] Plugin zaladowany. Uzyj komendy #ffff00/knpomoc#r, aby przeczytac instrukcje\n")
+    hecho("[#00ff00CKN#r] Plugin zaladowany. Uzyj komendy #ffff00/knpomoc#r, aby przeczytac instrukcje.\n")
     scripts.plugins_update_check:github_check_version('ckn', 'spocknudzesie')
 end
 
