@@ -10,6 +10,7 @@ scripts.ckn = scripts.ckn or {
     pluginName = 'ckn',
     events = {},
     triggers = {},
+    dir = getMudletHomeDir() .. "/plugins/ckn/"
 }
 
 

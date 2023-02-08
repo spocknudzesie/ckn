@@ -1,5 +1,5 @@
 return {
     'ckn',
     'commands',
-    'update-check'
+    'update_check'
 }

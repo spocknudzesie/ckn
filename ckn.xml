@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<AliasPackage>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>ckn</name>
+			<script></script>
+			<command></command>
+			<packageName></packageName>
+			<regex></regex>
+			<Alias isActive="yes" isFolder="no">
+				<name>knsprzedaz</name>
+				<script>scripts.ckn:cmdSprzedaz(matches)
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>/knsprzedaz(?:$| (rozpocznij|zacznij|zakoncz|reset|start|pomoc|stop|dodaj|\+))(?:$| (.+))</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>knwycen</name>
+				<script>scripts.ckn:cmdWycen(matches[2])</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>/knwycen (.*)</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>knprowizja</name>
+				<script>scripts.ckn:cmdProwizja(matches[2])</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>/knprowizja (.+)</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>knwyplac</name>
+				<script>scripts.ckn:cmdWyplac(matches)
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>/knwyplac($| (.+) (\d+) (\d+) (\d+) (\d+))</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>knpomoc</name>
+				<script>scripts.ckn:cmdHelp(matches)
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>/knpomoc</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>knwloz_do_pojemnika</name>
+				<script>send("otworz pojemnik")
+local arg = matches[2]:gsub(" i ", ", ")
+arg = arg:gsub(", ", ",")
+arg = string.split(arg, ",")
+for _, a in ipairs(arg) do
+  send("wloz " .. a .. " do pojemnika")
+end</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>/wp (.+)</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>otworz_pojemnik</name>
+				<script></script>
+				<command>otworz pojemnik</command>
+				<packageName></packageName>
+				<regex>^/op</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>knwloz</name>
+				<script>scripts.ckn:cmdWloz(matches[2])</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>/knw(?:|loz) (.+)</regex>
+			</Alias>
+		</AliasGroup>
+	</AliasPackage>
+
+	<TriggerPackage>
+		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>ckn</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList />
+			<regexCodePropertyList />
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>javier_wyplaca</name>
+				<script>local miedz = scripts.money:descToCopper(matches[2])
+scripts.ckn:addSold(miedz)
+</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>Javier z ogromna niechecia wrecza ci (.*)\.</string>
+					<string>Dostajesz (.*)\.</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>knwycena</name>
+				<script>local cc = scripts.money:descToCopper(matches[2])
+local deno = scripts.money:denominate(cc, false, true)
+scripts.ckn:printMargins(cc)
+disableTrigger("knwycena")
+</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^Javier szepce do ciebie: (?:.*?) (\d+ .+?)(?:\.| i jest to)</string>
+					<string>^Oceniasz, ze za .* dostalabys od Javiera (.+)\.</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+		</TriggerGroup>
+	</TriggerPackage>    
+</MudletPackage>

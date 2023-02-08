@@ -1,12 +1,13 @@
-CKN.updateCheck = ckn.updateCheck or {
-    file = ckn.dir .. "commits",
+scripts.ckn.updateCheck = scripts.ckn.updateCheck or {
+    file = scripts.ckn.dir .. "commits",
     url = "https://api.github.com/repos/spocknudzesie/ckn/commits",
     storeKey = "CKN"
 }
 
 
-function ckn.updateCheck:checkNewVersion()
+function scripts.ckn.updateCheck:checkNewVersion()
     downloadFile(self.file, self.url)
+    print("downloading" .. self.file .. " from " .. self.url)
     registerAnonymousEventHandler("sysDownloadDone", function(_, file)
         self:handle(file)
     end, true)
@@ -14,7 +15,7 @@ function ckn.updateCheck:checkNewVersion()
 end
 
 
-function ckn.updateCheck:handle(fileName)
+function scripts.ckn.updateCheck:handle(fileName)
     if fileName ~= self.file then
         return
     end
@@ -30,7 +31,7 @@ function ckn.updateCheck:handle(fileName)
         if cknState.sha ~= nil and sha ~= cknState.sha then
             echo("\n")
             cecho("<CadetBlue>(skrypty)<tomato>: Plugin ckn ma  nowa aktualizacje. Kliknij ")
-            cechoLink("<green>tutaj", [[ckn.updateCheck:update()]], "Aktualizuj", true)
+            cechoLink("<green>tutaj", [[scripts.ckn.updateCheck:update()]], "Aktualizuj", true)
             cecho(" <tomato>aby pobrac")
             echo("\n")
         end
@@ -39,13 +40,13 @@ function ckn.updateCheck:handle(fileName)
     end
 end
 
-function ckn.updateCheck:update()
+function scripts.ckn.updateCheck:update()
     scripts.plugins_installer:install_from_url("https://codeload.github.com/spocknudzesie/ckn/zip/master")
 end
 
-ckn.updateCheck.coroutine = coroutine.create(function()
-    ckn.updateCheck:checkNewVersion()
+scripts.ckn.updateCheck.coroutine = coroutine.create(function()
+    scripts.ckn.updateCheck:checkNewVersion()
 end)
-tempTimer(5, function() coroutine.resume(ckn.updateCheck.coroutine) end)
+tempTimer(5, function() coroutine.resume(scripts.ckn.updateCheck.coroutine) end)
 
 
