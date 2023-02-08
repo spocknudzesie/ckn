@@ -7,7 +7,6 @@ scripts.ckn.updateCheck = scripts.ckn.updateCheck or {
 
 function scripts.ckn.updateCheck:checkNewVersion()
     downloadFile(self.file, self.url)
-    print("downloading" .. self.file .. " from " .. self.url)
     registerAnonymousEventHandler("sysDownloadDone", function(_, file)
         self:handle(file)
     end, true)
@@ -22,6 +21,7 @@ function scripts.ckn.updateCheck:handle(fileName)
 
     local cknState = scripts.state_store:get(self.storeKey) or {}
 
+
     local file, s, contents = io.open(self.file)
     if file then
         contents = yajl.to_value(file:read("*a"))
@@ -30,7 +30,7 @@ function scripts.ckn.updateCheck:handle(fileName)
         local sha = contents[1].sha
         if cknState.sha ~= nil and sha ~= cknState.sha then
             echo("\n")
-            cecho("<CadetBlue>(skrypty)<tomato>: Plugin ckn ma  nowa aktualizacje. Kliknij ")
+            cecho("<CadetBlue>(skrypty)<tomato>: Plugin ckn ma nowa aktualizacje. Kliknij ")
             cechoLink("<green>tutaj", [[scripts.ckn.updateCheck:update()]], "Aktualizuj", true)
             cecho(" <tomato>aby pobrac")
             echo("\n")
