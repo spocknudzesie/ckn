@@ -238,7 +238,7 @@ function scripts.ckn:cmdWloz(arg)
     if arg:match("%d+ %d+ %d+ %d+") then
         arg = string.split(arg, ' ')
         for i, c in ipairs(arg) do
-            print(string.format('wloz %s%s', self:coinToCase(tonumber(c), coins[i]), cont))
+            send(string.format('wloz %s%s', self:coinToCase(tonumber(c), coins[i]), cont))
         end
     elseif arg:match("(%d+ %w+)") then
         local c, deno = arg:match("(%d+) (%w+)")        
@@ -256,7 +256,7 @@ function scripts.ckn:cmdWloz(arg)
             self:msg('err', '/knwloz [ile] [mt/zl/sr/md] do [czego]?')
             return;            
         end
-        print(string.format('wloz %s%s', self:coinToCase(c, item), cont))
+        send(string.format('wloz %s%s', self:coinToCase(c, item), cont))
     else
         self:msg('err', '/knwloz [co] do [czego]?')
         return
