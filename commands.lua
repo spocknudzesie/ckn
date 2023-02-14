@@ -1,12 +1,12 @@
 function scripts.ckn:initSelling(ops)
     self.data.currentOperation = ops
     hecho(string.format("[#00ff00CKN#r] Liczenie sprzedazy wlaczone.\n"))
-    -- enableTrigger("javier_odbiera")
-    self.triggers.shopPaysMoney = tempTrigger("^Javier z ogromna niechecia wrecza ci (.*)\\.",
-        function()
-            self:addSold(scripts.money:descToCopper(matches[2]))
-            return true
-        end)
+    enableTrigger("javier_wyplaca")
+    -- self.triggers.shopPaysMoney = tempTrigger("^Javier z ogromna niechecia wrecza ci (.*)\\.",
+    --     function()
+    --         self:addSold(scripts.money:descToCopper(matches[2]))
+    --         return true
+    --     end)
     self.data.selling = true
     self.data.soldValue = 0
 end
@@ -21,8 +21,8 @@ end
 function scripts.ckn:finishSelling()
     local mt, zl, sr, md = scripts.money:denominate(self.data.soldValue, true)
     self:msg("info", "Liczenie sprzedazy zakonczone.\n")
-    -- disableTrigger("javier_odbiera")
-    killTrigger(self.triggers.shopPaysMoney)
+    disableTrigger("javier_wyplaca")
+    -- killTrigger(self.triggers.shopPaysMoney)
     self.data.selling = false
     
     self:saveOpsToFile(
@@ -96,10 +96,10 @@ function scripts.ckn:cmdSprzedaz(arg)
         self:addSold(val)
     else
         if self.data.selling == true then
-            self:msg("ok", "Sprzedaz jest juz rozpoczeta. Mozesz ja zakonczyc komenda #ffff00/knsprzedaz zakoncz#r")
+            self:msg("ok", "Sprzedaz jest juz rozpoczeta. Mozesz ja zakonczyc komenda #ffff00/knsprzedaz stop#r")
             self:printCurrentSales(true)
         else
-            self:msg("err", "Sprzedaz nie jest rozpoczeta. Mozesz ja rozpoczac komenda #ffff00/knsprzedaz zacznij#r")
+            self:msg("err", "Sprzedaz nie jest rozpoczeta. Mozesz ja rozpoczac komenda #ffff00/knsprzedaz start#r")
         end    
     end
 end
