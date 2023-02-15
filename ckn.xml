@@ -65,7 +65,7 @@ end</script>
 			<script>scripts.ckn:cmdWloz(matches[2])</script>
 			<command></command>
 			<packageName></packageName>
-			<regex>/knw(?:|loz) (.+)</regex>
+			<regex>/knwl(?:|oz) (.+)</regex>
 		</Alias>
 	</AliasPackage>
 
