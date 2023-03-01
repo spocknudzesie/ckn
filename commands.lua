@@ -36,7 +36,7 @@ end
 
 
 function scripts.ckn:printCurrentSales(noMargins)
-    echo("")
+    echo("\n")
     self:msg("info", string.format("Laczna kwota sprzedazy: %s", 
         scripts.money:hCopperToDesc(self.data.soldValue)))
     if not noMargins then
@@ -279,6 +279,8 @@ function scripts.ckn:cmdHelp()
     self:printCmdHelp("s[przedaz] dodaj/+ [kwota]", "dodaje podana kwote w formacie [mt] [zl] [sr] [md] do sumy sprzedazy, np. /knsprzedaz + 1 2 0 0")
     self:printCmdHelp("s[przedaz]", "wyswietla aktualna kwote sprzedazy")
     self:printCmdHelp("wyplac <komu> <mt> <zl> <sr> <md>", "wyplaca wskazanej osobie podana liczbe monet, np. /knwyplac ogrowi 1 20 5 0")
+    self:printCmdHelp("we[z] <co> [z czego]", "bierze wskazane przedmioty i dodaje je do kolejki sprzedazy")
+    self:printCmdHelp("sp[rzedaj] [t]", "sprzedaje pierwszy przedmiot z kolejki; jesli podasz parametr 't', po sprzedazy odlozy monety")
     self:printCmdHelp("wl[oz] <mt> <zl> <sr> <md> [do czego]", "wklada podana liczbe monet do pojemnika")
     self:printCmdHelp("wl[oz] <x mt/zl/sr/md> [do czego]", "wklada podana liczbe monet do pojemnika")
     self:printCmdHelp("wl[oz] <x mithryli/zlota/srebra/miedzi> [do czego]", "wklada podana liczbe monet do pojemnika")

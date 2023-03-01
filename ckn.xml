@@ -67,6 +67,20 @@ end</script>
 			<packageName></packageName>
 			<regex>/knwl(?:|oz) (.+)</regex>
 		</Alias>
+		<Alias isActive="yes" isFolder="no">
+			<name>knwez</name>
+			<script>scripts.ckn:cmdWez(matches)</script>
+			<command></command>
+			<packageName></packageName>
+			<regex>^/knwe (.*)</regex>
+		</Alias>
+		<Alias isActive="yes" isFolder="no">
+			<name>knsprzedaj</name>
+			<script>scripts.ckn:sellNextWare(matches[2])</script>
+			<command></command>
+			<packageName></packageName>
+			<regex>^/knsp(?:|rzedaj)($| t)</regex>
+		</Alias>
 	</AliasPackage>
 
 	<TriggerPackage>
@@ -86,7 +100,7 @@ scripts.ckn:addSold(miedz)
 			<colorTriggerFgColor>#000000</colorTriggerFgColor>
 			<colorTriggerBgColor>#000000</colorTriggerBgColor>
 			<regexCodeList>
-				<string>Javier z ogromna niechecia wrecza ci (.*)\.</string>
+				<string>z ogromna niechecia wrecza ci (.*)\.</string>
 				<string>Dostajesz (.*)\.</string>
 			</regexCodeList>
 			<regexCodePropertyList>
@@ -114,6 +128,29 @@ disableTrigger("knwycena")
 			<regexCodeList>
 				<string>^Javier szepce do ciebie: (?:.*?) (\d+ .+?)(?:\.| i jest to)</string>
 				<string>^Oceniasz, ze za .* dostalabys od Javiera (.+)\.</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>ckn_bierzesz</name>
+			<script>scripts.ckn:setWares(matches[2])
+disableTrigger('ckn_bierzesz')</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^Bierzesz (.*) (?:z |ze )</string>
+				<string>^Bierzesz (.*)\.</string>
 			</regexCodeList>
 			<regexCodePropertyList>
 				<integer>1</integer>

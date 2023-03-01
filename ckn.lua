@@ -5,11 +5,13 @@ scripts.ckn = scripts.ckn or {
         prowizje = {},    
         lastPayout = nil,
         lastPayoutCmd = nil,
-        payoutVals = nil
+        payoutVals = nil,
+        tmp = {},
     },
     pluginName = 'ckn',
     events = {},
     triggers = {},
+    timers = {},
     dir = getMudletHomeDir() .. "/plugins/ckn/"
 }
 

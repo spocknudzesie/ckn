@@ -1,4 +1,5 @@
 return {
     'ckn',
     'commands',
+    'selling',
 }
